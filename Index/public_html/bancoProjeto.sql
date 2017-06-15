@@ -26,5 +26,6 @@ CREATE TABLE  monografia (
   idMonografia SERIAL,
   tituloMonografia varchar(15) NOT NULL,
   temaMonografia varchar(50) NOT NULL,
-  dataMonografia varchar(30) NOT NULL
+  anoMonografia varchar(30) NOT NULL,
+  autorMonografia varchar(30) NOT NULL
 );
