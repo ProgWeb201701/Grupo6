@@ -5,18 +5,61 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-    <head>
-        <title>Login</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="estilo.css">
-    </head>
-    <body>
+<head>
+    <title>Inicio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="estilo.css">
+</head>
+<body>
+
+    <div id="divApresentacao">
+        <h1>Mensagem aleatória</h1>
+        <p>Lorem ipsum</p>
+
+    </div>
+    
+
+    <div id="divLogar">
+        <h2>Você já está cadastrado? Faça o login!</h2>
+
+        <input class="inputLogin" type="text" placeholder="Usuario"><br>
+        <input class="inputLogin" type="password" placeholder="Senha"><br>
+                <button class="btCadastro" id="btCadastrarAluno" type="button">Logar</button>  
+
+    </div>
+
+    <div id="divCadastrar">
+
+    <h2>Novo no site? Cadastre-se!</h2>
+
         <div id="divLogin">
+        <h4>Aluno</h4>
             <fieldset> 
-                <input class="inputLogin" type="text" placeholder="Usuário"><br><br>
-                <input class="inputLogin" type="text" placeholder="Senha">        
+                <input class="inputLogin" type="text" placeholder="Nome"><br>
+                <input class="inputLogin" type="text" placeholder="Email"><br>
+                <input class="inputLogin" type="text" placeholder="Matrícula"><br>
+                <input class="inputLogin" type="password" placeholder="Senha"><br>
+                <button class="btCadastro" id="btCadastrarAluno" type="button">Cadastrar</button>     
             </fieldset>
         </div>
-    </body>
+
+        
+
+        <div id="divLogin">
+        <h4>Professor</h4>
+            <fieldset> 
+                <input class="inputLogin" type="text" placeholder="Nome"><br>
+                <input class="inputLogin" type="text" placeholder="Email"><br>
+                <select class="inputLoginSelect" name="titulacao">
+                    <option value="mestrado">Mestrado</option>
+                    <option value="Doutorado">Doutorado</option>
+                </select><br>
+                <input class="inputLogin" type="password" placeholder="Senha"><br>
+                <button class="btCadastro" id="btCadastrarProfessor" type="button">Cadastrar</button>     
+            </fieldset>
+        </div>
+
+    </div>
+</body>
 </html>
