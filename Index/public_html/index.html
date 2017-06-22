@@ -37,13 +37,16 @@ and open the template in the editor.
 
         <div id="divLogin">
             <h4>Aluno</h4>
-            <fieldset> 
-                <input class="inputLogin" type="text" placeholder="Nome"><br>
-                <input class="inputLogin" type="text" placeholder="Email"><br>
-                <input class="inputLogin" type="text" placeholder="Matrícula"><br>
-                <input class="inputLogin" type="password" placeholder="Senha"><br>
-                <button class="btCadastro" id="btCadastrarAluno" type="button">Cadastrar</button>     
-            </fieldset>
+            <form action="../controller/cadastrarAluno.php">
+                <fieldset> 
+                    <input class="inputLogin" type="text" name="nomeAluno" placeholder="Nome"><br>
+                    <input class="inputLogin" type="text" name="emailAluno" placeholder="Email"><br>
+                    <input class="inputLogin" type="text" name="matriculaAluno" placeholder="Matrícula"><br>
+                    <input class="inputLogin" type="password" name="senhaAluno" placeholder="Senha"><br>
+                    <input type="submit" class="btCadastro" id="btCadastrarAluno" value="Cadastrar">     
+                </fieldset>
+            </form>
+            
         </div>
 
         
