@@ -12,14 +12,16 @@ CREATE TABLE  professor (
   idProfessor SERIAL,
   nomeProfessor varchar(15) NOT NULL,
   emailProfessor varchar(50) NOT NULL,
-  senhaProfessor varchar(30) NOT NULL
+  senhaProfessor varchar(30) NOT NULL,
+  PRIMARY KEY (idProfessor)
 );
 
 CREATE TABLE  aluno (
   idAluno SERIAL,
   nomeAluno varchar(15) NOT NULL,
   matriculaAluno varchar(50) NOT NULL,
-  senhaAluno varchar(30) NOT NULL
+  senhaAluno varchar(30) NOT NULL,
+  PRIMARY KEY (idAluno)
 );
 
 CREATE TABLE  monografia (
@@ -27,5 +29,7 @@ CREATE TABLE  monografia (
   tituloMonografia varchar(15) NOT NULL,
   temaMonografia varchar(50) NOT NULL,
   anoMonografia varchar(30) NOT NULL,
-  autorMonografia varchar(30) NOT NULL
+  PRIMARY KEY (idMonografia),
+  idAluno integer references aluno (idAluno),
+  idProfessor integer references professor (idProfessor)
 );
