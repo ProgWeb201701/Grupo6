@@ -12,19 +12,22 @@ body {
   background-color: #eee;
 }
 
+h1 {
+	margin: 0;
+}
+
 h4 {
 	margin: 0;
 	margin-bottom: 4px;
 }
 
 #divApresentacao {
-	background-color: green;
 	width: 100%;
 	text-align: center;
 }
 
 #divLogar {
-	background-color: blue;
+	border: 1px solid black;
 	width: 48%;
 	display:inline-block;
 	text-align: center;
@@ -32,7 +35,7 @@ h4 {
 }
 
 #divCadastrar {
-	background-color: red;
+	border: 1px solid black;
 	width: 48%;
 	height: 500px;
 	text-align: center;
@@ -45,7 +48,7 @@ h4 {
 }
 
 .btEditar {
-	width: 100px;
+	width: 60px;
 	height: 30px;
 }
 
@@ -55,7 +58,7 @@ h4 {
 }
 
 .inputLoginSelect {
-	width: 306px;
+	width: 300px;
 	height: 30px;
 	margin-bottom: 5px;
 
