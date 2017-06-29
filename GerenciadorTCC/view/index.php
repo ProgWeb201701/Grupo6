@@ -54,8 +54,8 @@ and open the template in the editor.
 
             <div id="divLogin">
                 <h4>Professor</h4>
-                <form method="POST" action="../controller/cadastrarProfessor.php"
-                      <fieldset> 
+                <form method="POST" action="../controller/cadastrarProfessor.php">
+                    <fieldset>
                         <input class="inputLogin" name="nomeProfessor" type="text" placeholder="Nome"><br>
                         <input class="inputLogin" name="emailProfessor" type="text" placeholder="Email"><br>
                         <select class="inputLoginSelect" name="titulacaoProfessor">
@@ -63,7 +63,7 @@ and open the template in the editor.
                             <option value="Doutorado">Doutorado</option>
                         </select><br>
                         <input class="inputLogin" name="senhaProfessor" type="password" placeholder="Senha"><br>
-                        <button class="btCadastro" id="btCadastrarProfessor" type="button">Cadastrar</button>     
+                        <input class="btCadastro" id="btCadastrarProfessor" type="submit" value="Cadastrar">    
                     </fieldset>
                 </form>
             </div>
