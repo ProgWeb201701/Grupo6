@@ -54,7 +54,7 @@ and open the template in the editor.
 
             <div id="divLogin">
                 <h4>Professor</h4>
-                <form method="POST" action="../controller/cadastrarAluno.php"
+                <form method="POST" action="../controller/cadastrarProfessor.php"
                       <fieldset> 
                         <input class="inputLogin" name="nomeProfessor" type="text" placeholder="Nome"><br>
                         <input class="inputLogin" name="emailProfessor" type="text" placeholder="Email"><br>

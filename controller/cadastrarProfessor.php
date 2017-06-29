@@ -15,8 +15,9 @@ ini_set('display_errors', 1);
     $titulacao = $_POST['titulacaoProfessor'];
     $email = $_POST['emailAluno'];
     
-    $query = "INSERT INTO professor (nomeProfessor, senhaProfessor, titulacaoProfessor, emailProfessor) VALUES ('$nome','$senha','$titulacao','$email');";
+    $query = "INSERT INTO professor (nomeProfessor, senhaProfessor, titulacaoProfessor, emailProfessor) "
+            . "VALUES ('$nome','$senha','$titulacao','$email');";
     
     echo $conexao->requisicoesBanco($query);
     
-    header("Location: ../view/home_professor.html");
+    header("Location: ../view/home_professor.php");
