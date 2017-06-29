@@ -23,9 +23,13 @@ and open the template in the editor.
         <div id="divLogar">
             <h2>Você já está cadastrado? Faça o login!</h2>
 
-            <input class="inputLogin" type="text" placeholder="Usuario"><br>
-            <input class="inputLogin" type="password" placeholder="Senha"><br>
-            <form action="home_professor.html">
+            <form method="POST" action="../controller/controllerLogin.php" >
+                <select id="user" name="user" class="form-control">
+                    <option value="1">Aluno</option>
+                    <option value="2">Professor</option>
+                </select><br><br>
+                <input class="inputLogin" name="usuarioLogin" type="text" placeholder="Usuario"><br>
+                <input class="inputLogin" name="senhaLogin" type="password" placeholder="Senha"><br>
                 <input class="btCadastro" id="btCadastrarAluno" type="submit" value="Entrar" />
             </form>
 
