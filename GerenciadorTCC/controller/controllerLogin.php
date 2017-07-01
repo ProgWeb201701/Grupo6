@@ -17,7 +17,8 @@ $con = mysqli_connect("localhost", "root", "96091262375", "progweb");
 
 
 if ($opcao === 'aluno') {
-    $result = mysqli_query($con, "SELECT * FROM aluno WHERE nomeAluno = '$usuario' AND senhaAluno = '$senha';");
+    $result = mysqli_query($con, "SELECT * FROM aluno WHERE "
+            . "nomeAluno = '$usuario' AND senhaAluno = '$senha';");
     
     
     if (mysqli_num_rows($result) > 0) {
@@ -33,7 +34,8 @@ if ($opcao === 'aluno') {
         header('Location:../view/index.php');
     }
 } else if ($opcao === 'professor'){
-        $result = mysqli_query($con, "SELECT * FROM professor WHERE nomeProfessor = '$usuario' AND senhaProfessor = '$senha';");
+        $result = mysqli_query($con, "SELECT * FROM professor WHERE "
+                . "nomeProfessor = '$usuario' AND senhaProfessor = '$senha';");
 
     if (mysqli_num_rows($result) > 0) {
         $_SESSION['login'] = $usuario;

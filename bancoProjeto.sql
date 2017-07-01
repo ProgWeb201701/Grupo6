@@ -24,12 +24,12 @@ CREATE TABLE  aluno (
   PRIMARY KEY (idAluno)
 );
 
-CREATE TABLE  monografia (
-  idMonografia SERIAL,
-  tituloMonografia varchar(15) NOT NULL,
-  temaMonografia varchar(50) NOT NULL,
-  anoMonografia varchar(30) NOT NULL,
-  PRIMARY KEY (idMonografia),
-  idAluno integer references aluno (idAluno),
-  idProfessor integer references professor (idProfessor)
+CREATE TABLE  tcc (
+    idTcc SERIAL,
+    tituloTcc varchar(15) NOT NULL,
+    PRIMARY KEY (idTcc),
+    idOrientado integer references aluno (idAluno),
+    idOrientador integer references professor (idProfessor),
+    idAvaliadorUm integer references professor (idProfessor),
+    idAvaliadorDois integer references professor (idProfessor)
 );
