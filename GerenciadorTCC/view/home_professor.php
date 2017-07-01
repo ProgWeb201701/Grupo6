@@ -18,6 +18,7 @@ and open the template in the editor.
       <ul class="nav navbar-nav">
           <li class="active"><a href="#">Home</a></li>
           <li><a href="GerenciarTCC.html">Gerenciar TCC</a></li>
+          <li><a href="../view/index.php">Sair<?php session_abort() ?></a></li>
       </ul>
   
 </nav>

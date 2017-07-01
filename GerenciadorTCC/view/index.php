@@ -14,9 +14,8 @@ and open the template in the editor.
     <body>
 
         <div id="divApresentacao">
-            <h1>Mensagem aleatória</h1>
-            <p>Lorem ipsum</p>
-
+            <h1>Bem-vindo ao Gerenciador de TCC</h1>
+            <br>
         </div>
 
 
@@ -24,9 +23,9 @@ and open the template in the editor.
             <h2>Você já está cadastrado? Faça o login!</h2>
 
             <form method="POST" action="../controller/controllerLogin.php" >
-                <select id="user" name="user" class="form-control">
-                    <option value="1">Aluno</option>
-                    <option value="2">Professor</option>
+                <select id="user" name="usuario" class="form-control">
+                    <option value="aluno">Aluno</option>
+                    <option value="professor">Professor</option>
                 </select><br><br>
                 <input class="inputLogin" name="usuarioLogin" type="text" placeholder="Usuario"><br>
                 <input class="inputLogin" name="senhaLogin" type="password" placeholder="Senha"><br>

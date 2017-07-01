@@ -5,52 +5,75 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-<head>
-    <title>Aluno</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/estilo.css">
-</head>
-<body>
+    <head>
+        <?php
+        session_start();
+        
+        if ((!isset($_SESSION['login']) == true) and ( !isset($_SESSION['senha']) == true)) {
+            unset($_SESSION['login']);
+            unset($_SESSION['senha']);
+            header('Location:../view/index.php');
+        }
 
-    <div id="divApresentacao">
-        <h1>Mensagem aleatória</h1>
-        <p>Lorem ipsum</p>
+        $logado = $_SESSION['login'];
+        $senha = $_SESSION['senha'];
+        $alunoLogin = $_SESSION['alunoTabela'];
+        $con = mysqli_connect("localhost", "root", "96091262375", "progweb");
+        $result = mysqli_query($con, "SELECT * FROM aluno WHERE idAluno = ".$alunoLogin['idAluno']);
+        $alunoTabela = mysqli_fetch_assoc($result);
+        
+        ?>
+        <title>Aluno</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
 
-    </div>
-    
+        <nav class="navbar navbar-inverse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="GerenciarTCC.html">Gerenciar TCC</a></li>
+                <li><a><?php echo $alunoTabela['nomeAluno'] ?></a></li>
+                <li><a href="../view/index.php">Sair<?php session_abort() ?></a></li>
+            </ul>
 
-    <div id="divLogar">
-        <h2>Submeta o arquivo da monografia!</h2>
+        </nav>
 
-        <input type="file" name=""><br>
 
-    </div>
+        <div id="divLogar">
+            <h2>Submeta o arquivo da monografia!</h2>
 
-    <div id="divCadastrar">
+            <input type="file" name=""><br>
 
-    <h2>Edite seu perfil!</h2>
-
-        <div id="divLogin">
-        <h4>Aluno</h4>             
-                <input class="inputLogin" type="text" placeholder="Nome">
-                <button class="btEditar" id="editarNome" type="button">Editar</button>
-                <button class="btEditar" id="editarNome" type="button">Salvar</button><br>
-
-                <input class="inputLogin" type="text" placeholder="Email">
-                <button class="btEditar" id="editarNome" type="button">Editar</button>
-                <button class="btEditar" id="editarNome" type="button">Salvar</button><br>
-
-                <input class="inputLogin" type="text" placeholder="Matrícula">
-                <button class="btEditar" id="editarNome" type="button">Editar</button>
-                <button class="btEditar" id="editarNome" type="button">Salvar</button><br>
-
-                <input class="inputLogin" type="password" placeholder="Senha">
-                <button class="btEditar" id="editarNome" type="button">Editar</button>
-                <button class="btEditar" id="editarNome" type="button">Salvar</button><br>          
         </div>
 
+        <div id="divCadastrar">
 
-    </div>
-</body>
+            <h2>Edite seu perfil!</h2>
+
+            <div id="divLogin">
+                <h4>Aluno</h4>
+                <form method="POST" action="../controller/editarAluno.php">
+                ID:<br>
+                <input  readonly class="inputLogin" type="text" name="idAluno" value="<?php echo $alunoTabela['idAluno']?>"><br>
+                <br>
+                Nome:<br>
+                <input class="inputLogin" type="text" name="nomeAluno" value="<?php echo $alunoTabela['nomeAluno']?>"><br>
+                <br>
+                Email:<br>
+                <input class="inputLogin" type="text" name="emailAluno" value=<?php echo $alunoTabela['emailAluno'] ?>><br>
+                <br>
+                Matricula:<br>
+                <input  readonly class="inputLogin" type="text" name="matriculaAluno" value=<?php echo $alunoTabela['matriculaAluno'] ?>><br>
+                <br>
+                Senha:<br>
+                <input class="inputLogin" type="password" name="senhaAluno" value=<?php echo $senha?>><br>
+                <br>
+                <button class="btEditar" id="editarNome" type="input">Salvar</button>          
+                </form>
+            </div>
+
+
+        </div>
+    </body>
 </html>

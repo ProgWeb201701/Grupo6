@@ -9,41 +9,40 @@ session_start();
  *
  * @author Bruno
  */
-//class controllerLogin {
+$usuario = $_POST['usuarioLogin'];
+$senha = $_POST['senhaLogin'];
+$opcao = $_POST['usuario'];
 
-//    function loginAluno($usuario, $senha) {
+$con = mysqli_connect("localhost", "root", "96091262375", "progweb");
 
-        $usuario = $_POST['usuarioLogin'];
-        $senha = $_POST['senhaLogin'];
 
-        $result = mysql_query("SELECT * FROM aluno WHERE nomeAluno = '$usuario' AND senhaAluno = '$senha';");
-
-        if (!$result) {
-            echo 'aaaaaaaaa';
-        }
+if ($opcao === 'aluno') {
+    $result = mysqli_query($con, "SELECT * FROM aluno WHERE nomeAluno = '$usuario' AND senhaAluno = '$senha';");
+    
+    
+    if (mysqli_num_rows($result) > 0) {
+        $_SESSION['login'] = $usuario;
+        $_SESSION['senha'] = $senha;
+        $_SESSION['alunoTabela'] = mysqli_fetch_assoc($result);
         
         
-//        if (mysql_num_rows($result) > 0) {
-////            $nome = $_POST['nomeAluno'];
-////            $senha = $_POST['senhaAluno'];
-//            header("Location: ../view/home_aluno.php");
-//        } else {
-//            $lc = new controllerLogin();
-//            $lc->loginProfessor();
-//        }
-//    }
+        header('Location:../view/home_aluno.php');
+    } else {
+        unset($_SESSION['login']);
+        unset($_SESSION['senha']);
+        header('Location:../view/index.php');
+    }
+} else if ($opcao === 'professor'){
+        $result = mysqli_query($con, "SELECT * FROM professor WHERE nomeProfessor = '$usuario' AND senhaProfessor = '$senha';");
 
-//    function loginProfessor() {
-//
-//        $result = mysql_query("SELECT * FROM professor WHERE nomeProfessor = '$usuario' AND senhaProfessor = '$senha'");
-//
-//        if (mysql_num_rows($result) > 0) {
-//            $_SESSION['login'] = $usuario;
-//            $_SESSION['senha'] = $senha;
-//            header("Location: ../view/home_professor.php");
-//        } else {
-//            
-//        }
-//    }
-
-//}
+    if (mysqli_num_rows($result) > 0) {
+        $_SESSION['login'] = $usuario;
+        $_SESSION['senha'] = $senha;
+        header('Location:../view/home_professor.php');
+    } else {
+        unset($_SESSION['login']);
+        unset($_SESSION['senha']);
+        header('Location:../view/index.php');
+    }
+}
+?>
