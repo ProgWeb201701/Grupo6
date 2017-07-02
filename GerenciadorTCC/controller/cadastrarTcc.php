@@ -12,7 +12,7 @@ $orientador = $_POST['orientadorTcc'];
 $avaliador1 = $_POST['avaliadorUm'];
 $avaliador2 = $_POST['avaliadorDois'];
 
-$query = "INSERT INTO tcc (tituloTcc, idOrientado, idOrientador, idAvaliadorUm,"
+$query = "INSERT INTO tcc (tituloTcc, idOrientando, idOrientador, idAvaliadorUm,"
         . " idAvaliadorDois) VALUES ('$titulo',$orientando,$orientador, "
         . "$avaliador1, $avaliador2);";
 

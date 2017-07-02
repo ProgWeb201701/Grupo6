@@ -6,6 +6,22 @@ and open the template in the editor.
 -->
 <html>
     <head>
+        <?php
+        session_start();
+        
+        if ((!isset($_SESSION['login']) == true) and ( !isset($_SESSION['senha']) == true)) {
+            unset($_SESSION['login']);
+            unset($_SESSION['senha']);
+            header('Location:../view/index.php');
+        }
+        
+        $professorLogin = $_SESSION['professorTabela'];
+        $con = mysqli_connect("localhost", "root", "96091262375", "progweb");
+        $result = mysqli_query($con, "SELECT * FROM professor WHERE idProfessor = ".$professorLogin['idProfessor']);
+        $professorTabela = mysqli_fetch_assoc($result);
+        
+        ?>
+        
         <title>Professor</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +32,7 @@ and open the template in the editor.
             <ul class="nav navbar-nav">
                 <li class="active"><a href="../view/home_professor.php">Home</a></li>
                 <li><a href="../view/gerenciar_tcc.php">Gerenciar TCC</a></li>
-                <li><a href="../view/gerenciar_tcc.php">TCC</a></li>
+                <li><a><?php echo $professorTabela['nomeProfessor'] ?></a></li>
                 <li><a href="../view/index.php">Sair<?php session_abort() ?></a></li>
             </ul>
 

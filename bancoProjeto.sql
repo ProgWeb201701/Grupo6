@@ -13,6 +13,7 @@ CREATE TABLE  professor (
   nomeProfessor varchar(15) NOT NULL,
   emailProfessor varchar(50) NOT NULL,
   senhaProfessor varchar(30) NOT NULL,
+  areaInteresseProfessor varchar(50) NOT NULL,
   PRIMARY KEY (idProfessor)
 );
 
@@ -32,4 +33,12 @@ CREATE TABLE  tcc (
     idOrientador integer references professor (idProfessor),
     idAvaliadorUm integer references professor (idProfessor),
     idAvaliadorDois integer references professor (idProfessor)
+);
+
+CREATE TABLE  coordenador (
+  idCoordenador SERIAL,
+  dataInicio varchar(15) NOT NULL,
+  dataFim varchar (15) NOT NULL,
+  idProfessor integer references professor (idProfessor),
+  PRIMARY KEY (idCoordenador)
 );

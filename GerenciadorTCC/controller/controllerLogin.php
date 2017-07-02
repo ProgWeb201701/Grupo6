@@ -40,6 +40,8 @@ if ($opcao === 'aluno') {
     if (mysqli_num_rows($result) > 0) {
         $_SESSION['login'] = $usuario;
         $_SESSION['senha'] = $senha;
+        $_SESSION['professorTabela'] = mysqli_fetch_assoc($result);
+        
         header('Location:../view/home_professor.php');
     } else {
         unset($_SESSION['login']);
