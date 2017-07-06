@@ -8,65 +8,17 @@ and open the template in the editor.
     Author     : Bruno
 */
 
-body {
-  background-color: #eee;
+#divEditarPerfil {
+    width: 50%;
+    text-align: center;
+    margin: auto;
+    padding: 10px;
+    background-color: #ccc;
+    
 }
 
-h1 {
-	margin: 0;
-}
-
-h4 {
-	margin: 0;
-	margin-bottom: 4px;
-}
-
-#divApresentacao {
-	width: 100%;
-	text-align: center;
-}
-
-#divLogar {
-	border: 1px solid black;
-	width: 48%;
-	display:inline-block;
-	text-align: center;
-	height: 500px;
-}
-
-#divCadastrar {
-	border: 1px solid black;
-	width: 48%;
-	height: 500px;
-	text-align: center;
-	float: right;
-}
-
-.btCadastro {
-	width: 306px;
-	height: 30px;
-}
-
-.btEditar {
-	width: 60px;
-	height: 30px;
-}
-
-#divLogin fieldset {
-	display:inline;
-
-}
-
-.inputLoginSelect {
-	width: 307px;
-	height: 30px;
-	margin-bottom: 5px;
-
-}
-
-.inputLogin {
-	width: 300px;
-	height: 25px;
-	margin-bottom: 5px;
-	padding-left: 3px;
+#divEditarPerfil input, #divEditarPerfil select {
+    width: 400px;
+    height: 25px;
+    
 }

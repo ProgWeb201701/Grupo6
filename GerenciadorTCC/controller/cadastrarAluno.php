@@ -3,8 +3,6 @@
 include '../model/dados/conexaoBanco.php';
 ini_set('display_errors', 1);
 
-
-$conexao = new conexaoBanco();
 $nome = $_POST['nomeAluno'];
 $senha = $_POST['senhaAluno'];
 $matricula = $_POST['matriculaAluno'];

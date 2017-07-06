@@ -20,5 +20,19 @@ class controllerTcc {
         $con = mysqli_connect("localhost", "root", "96091262375", "progweb");
         $result = mysqli_query($con, $query);
     }
+    
+    function avaliarTcc($nota, $id) {
+        $query = "UPDATE aluno SET notaTcc = $nota WHERE idTcc = $id;";
+
+        $con = mysqli_connect("localhost", "root", "96091262375", "progweb");
+        $result = mysqli_query($con, $query);
+    }
+
+    function deletarProfessor($id) {
+        $query = "DELETE FROM professor WHERE idProfessor = $id;";
+
+        $con = mysqli_connect("localhost", "root", "96091262375", "progweb");
+        $result = mysqli_query($con, $query);
+    }
 
 }

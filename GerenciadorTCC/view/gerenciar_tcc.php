@@ -26,14 +26,34 @@
         if ($prof['dataInicio'] < $dataAtual && $dataAtual < $prof['dataFim']) {
             $c = 1;
         }
+
+        $o = 0;
+        $tccs = $ler->lerTabela('tcc');
+        if ($tccs) {
+            while ($obj = mysqli_fetch_object($tccs)) {
+                if ($professorTabela['idProfessor'] === $obj->idOrientador) {
+                    $o = 1;
+                }
+            }
+            mysqli_free_result($tccs);
+        }
         
-        
-        
+        $a = 0;
+        $tccs = $ler->lerTabela('tcc');
+        if ($tccs) {
+            while ($obj = mysqli_fetch_object($tccs)) {
+                if ($professorTabela['idProfessor'] === $obj->idAvaliadorUm || $professorTabela['idProfessor'] === $obj->idAvaliadorDois) {
+                    $a = 1;
+                }
+            }
+            mysqli_free_result($tccs);
+        }
         ?>
 
         <title>Gerenciador de TCC</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 
     </head>
     <body>
@@ -41,16 +61,9 @@
         <nav class="navbar navbar-inverse">
             <ul class="nav navbar-nav">
                 <li><a href="../view/home_professor.php">Home</a></li>
-                <li><a href=
-                    <?php if ($c === 1) {
-                        echo '"../view/gerenciar_tcc.php"';
-                    } else {
-                        echo'"#"';
-                    }
-?>
-                >Gerenciar TCC</a></li>
-                <li><a href="../view/gerenciar_tcc.php">Visualizar TCC</a></li>
-                <li><a href="../view/gerenciar_tcc.php">Avaliar TCC</a></li>
+                <li class="active"><a href="../view/gerenciar_tcc.php">Gerenciar TCC</a></li>
+                <li><a href="../view/visualizar_tcc.php">Visualizar TCC</a></li>
+                <li><a href="../view/avaliar_tcc.php">Avaliar TCC</a></li>
                 <li><a><?php echo $professorTabela['nomeProfessor'] ?></a></li>
                 <li><a href="../view/index.php">Sair<?php session_abort() ?></a></li>
             </ul>
@@ -59,7 +72,7 @@
         <div id="gerenciarTcc">
             <fieldset>
                 <h2>Criar de TCC</h2>
-                <?php echo $c ?>
+                <?php echo 'cor'.$c; echo 'ori'.$o; echo 'ava'.$a;   ?>
 
                 <form method="POST" action='../controller/cadastrarTcc.php'>
 
@@ -141,33 +154,6 @@
 
         </div>
         <br>
-        <div id="mostrarTcc">
-            <h2>TCCs Cadastrados</h2>
-
-            <fieldset>
-                <?php
-                require_once '../controller/lerObjeto.php';
-                $ler = new lerObjeto();
-                $result = $ler->lerTabela('tcc');
-
-                if ($result) {
-                    echo '<ul>';
-                    while ($obj = mysqli_fetch_object($result)) {
-                        $orientando = $ler->lerLinha($obj->idOrientando, 'aluno', 'idAluno');
-                        $orientador = $ler->lerLinha($obj->idOrientador, 'professor', 'idProfessor');
-                        $avaliador1 = $ler->lerLinha($obj->idAvaliadorUm, 'professor', 'idProfessor');
-                        $avaliador2 = $ler->lerLinha($obj->idAvaliadorDois, 'professor', 'idProfessor');
-                        echo '<li><a> Titulo:' . $obj->tituloTcc . ', Orientando:' . $orientando['nomeAluno'] .
-                        ', Orientador:' . $orientador['nomeProfessor'] .
-                        ', Avaliador 1:' . $avaliador1['nomeProfessor'] .
-                        ', Avaliador 2:' . $avaliador2['nomeProfessor'] . '</li>';
-                    }
-                    echo '</ul>';
-                    mysqli_free_result($result);
-                }
-                ?>
-            </fieldset>
-
-        </div>
+        
     </body>
 </html>
