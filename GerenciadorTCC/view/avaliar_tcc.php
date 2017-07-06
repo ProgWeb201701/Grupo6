@@ -56,7 +56,6 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-        <link rel="stylesheet" type="text/css" href="css/estilo.css">
     </head>
 
     <body>
@@ -76,49 +75,42 @@
         <div style="border: 1px solid black;" id="mostrarTcc">
             <h2>TCCs Cadastrados</h2>
 
-            <fieldset>
-                <?php
-                require_once '../controller/lerObjeto.php';
-                $ler = new lerObjeto();
-                $result = $ler->lerTabela('tcc');
+            <?php
+            require_once '../controller/lerObjeto.php';
+            $ler = new lerObjeto();
+            $result = $ler->lerTabela('tcc');
 
-                if ($result) {
-                    echo '<form method="POST" action="../controller/avaliarTcc.php">';
-                    while ($obj = mysqli_fetch_object($result)) {
+            if ($result) {
+                
+                while ($obj = mysqli_fetch_object($result)) {
+echo '<form method="POST" action="../controller/avaliarTcc.php">';
+                    $orientando = $ler->lerLinha($obj->idOrientando, 'aluno', 'idAluno');
+                    $orientador = $ler->lerLinha($obj->idOrientador, 'professor', 'idProfessor');
+                    $avaliador1 = $ler->lerLinha($obj->idAvaliadorUm, 'professor', 'idProfessor');
+                    $avaliador2 = $ler->lerLinha($obj->idAvaliadorDois, 'professor', 'idProfessor');
 
-                        $orientando = $ler->lerLinha($obj->idOrientando, 'aluno', 'idAluno');
-                        $orientador = $ler->lerLinha($obj->idOrientador, 'professor', 'idProfessor');
-                        $avaliador1 = $ler->lerLinha($obj->idAvaliadorUm, 'professor', 'idProfessor');
-                        $avaliador2 = $ler->lerLinha($obj->idAvaliadorDois, 'professor', 'idProfessor');
+                    echo '<input readonly name="idTcc" value="' . $obj->idTcc . '"><br>';
+                    echo '<input readonly value="' . $obj->tituloTcc . '"><br>';
+                    echo '<input readonly value="' . $orientando['nomeAluno'] . '"><br>';
+                    echo '<input readonly value="' . $orientador['nomeProfessor'] . '"><br>';
+                    echo '<input readonly value="' . $avaliador1['nomeProfessor'] . '"><br>';
+                    echo '<input readonly value="' . $avaliador2['nomeProfessor'] . '"><br>';
 
-                        echo '<input readonly name="idTcc" value="' . $obj->idTcc . '"><br>';
-                        echo '<input readonly value="' . $obj->tituloTcc . '"><br>';                        
-                        echo '<input readonly value="' . $orientando['nomeAluno'] . '"><br>';
-                        echo '<input readonly value="' . $orientador['nomeProfessor'] . '"><br>';
-                        echo '<input readonly value="' . $avaliador1['nomeProfessor'] . '"><br>';
-                        echo '<input readonly value="' . $avaliador2['nomeProfessor'] . '"><br>';
-
-                        if (is_null($obj->notaTcc)) {
-                            echo '<input type="number" name="notaTcc" placeholder="Avalie aqui..."><br>';
-                        } else {
-                            echo '<input type="number" name="notaTcc" value="'.$obj->notaTcc.'"><br>';
-                        }
-
-                        echo '<input type="submit" value="Avaliar"><br><br>';
+                    if (is_null($obj->notaTcc)) {
+                        echo '<input type="number" name="notaTcc" placeholder="Avalie aqui..."><br>';
+                    } else {
+                        echo '<input type="number" name="notaTcc" value="' . $obj->notaTcc . '"><br>';
                     }
+
+                    echo '<input type="submit" value="Avaliar"><br><br>';
                     echo '</form>';
-
-                    mysqli_free_result($result);
                 }
-                ?>
-            </fieldset>
+                
+
+                mysqli_free_result($result);
+            }
+            ?>
         </div>
-
         <br>
-
-
-
-
-
     </body>
 </html>
