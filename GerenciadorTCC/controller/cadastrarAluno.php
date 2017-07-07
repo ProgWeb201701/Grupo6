@@ -14,4 +14,5 @@ $query = "INSERT INTO aluno (nomeAluno, senhaAluno, matriculaAluno, emailAluno) 
 $con = mysqli_connect("localhost", "root", "96091262375", "progweb");
 $result = mysqli_query($con, $query);
 
-header("Location: ../view/home_aluno.php");
+
+header('Location:../view/index.php');

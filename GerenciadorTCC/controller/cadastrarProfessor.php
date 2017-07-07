@@ -13,6 +13,7 @@ $email = $_POST['emailProfessor'];
 $query = "INSERT INTO professor (nomeProfessor, senhaProfessor, titulacaoProfessor, emailProfessor) "
         . "VALUES ('$nome','$senha','$titulacao','$email');";
 
-$conexao->requisicoesBanco($query);
+$con = mysqli_connect("localhost", "root", "96091262375", "progweb");
+$result = mysqli_query($con, $query);
 
-header("Location: ../view/home_professor.php");
+header("Location: ../view/index.php");

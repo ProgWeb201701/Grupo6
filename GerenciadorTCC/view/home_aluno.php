@@ -18,6 +18,7 @@ and open the template in the editor.
         $logado = $_SESSION['login'];
         $senha = $_SESSION['senha'];
         $alunoLogin = $_SESSION['alunoTabela'];
+        
         $con = mysqli_connect("localhost", "root", "96091262375", "progweb");
         $result = mysqli_query($con, "SELECT * FROM aluno WHERE idAluno = ".$alunoLogin['idAluno']);
         $alunoTabela = mysqli_fetch_assoc($result);
@@ -34,7 +35,7 @@ and open the template in the editor.
                 <li class="active"><a href="#">Home</a></li>
                 <li><a href="GerenciarTCC.html">Gerenciar TCC</a></li>
                 <li><a><?php echo $alunoTabela['nomeAluno'] ?></a></li>
-                <li><a href="../view/index.php">Sair<?php session_abort() ?></a></li>
+                <li><a href="../controller/loginSair.php">Sair</a></li>
             </ul>
 
         </nav>
@@ -64,12 +65,13 @@ and open the template in the editor.
                 <input class="inputLogin" type="text" name="emailAluno" value=<?php echo $alunoTabela['emailAluno'] ?>><br>
                 <br>
                 Matricula:<br>
-                <input  readonly class="inputLogin" type="text" name="matriculaAluno" value=<?php echo $alunoTabela['matriculaAluno'] ?>><br>
+                <input  class="inputLogin" type="text" name="matriculaAluno" value=<?php echo $alunoTabela['matriculaAluno'] ?>><br>
                 <br>
                 Senha:<br>
                 <input class="inputLogin" type="password" name="senhaAluno" value=<?php echo $senha?>><br>
                 <br>
-                <button class="btEditar" id="editarNome" type="input">Salvar</button>          
+                <button name="btEditarAluno" type="input">Editar</button>
+                <button name="btExcluirAluno" type="input">Excluir</button>
                 </form>
             </div>
 

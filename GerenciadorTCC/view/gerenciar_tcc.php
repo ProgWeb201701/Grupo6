@@ -18,7 +18,7 @@
 
         date_default_timezone_set('America/Sao_Paulo');
         $dataAtual = date('d-m-Y');
-
+        //Coordenador
         require_once '../controller/lerObjeto.php';
         $ler = new lerObjeto();
         $prof = $ler->lerLinha($professorTabela['idProfessor'], 'coordenador', 'idProfessor');
@@ -26,7 +26,7 @@
         if ($prof['dataInicio'] < $dataAtual && $dataAtual < $prof['dataFim']) {
             $c = 1;
         }
-
+        //Orientador
         $o = 0;
         $tccs = $ler->lerTabela('tcc');
         if ($tccs) {
@@ -37,7 +37,7 @@
             }
             mysqli_free_result($tccs);
         }
-
+        //Avaliador
         $a = 0;
         $tccs = $ler->lerTabela('tcc');
         if ($tccs) {
@@ -51,33 +51,51 @@
         }
         ?>
 
-        <title>Gerenciador de TCC</title>
+        <title>Gerenciar</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-
     </head>
     <body>
 
         <nav class="navbar navbar-inverse">
             <ul class="nav navbar-nav">
                 <li><a href="../view/home_professor.php">Home</a></li>
-                <li class="active"><a href="../view/gerenciar_tcc.php">Gerenciar TCC</a></li>
-                <li><a href="../view/visualizar_tcc.php">Visualizar TCC</a></li>
-                <li><a href="../view/avaliar_tcc.php">Avaliar TCC</a></li>
-                <li><a><?php echo $professorTabela['nomeProfessor'] ?></a></li>
-                <li><a href="../view/index.php">Sair<?php session_abort() ?></a></li>
+                <?php
+                echo '<li class="active"><a ';
+                if ($c === 1) {
+                    echo 'href="../view/gerenciar_tcc.php"';
+                } else {
+                    echo ' ';
+                }
+                echo'>Gerenciar TCC</a></li>';
+                echo '<li><a ';
+
+                if ($a === 1) {
+                    echo 'href = "../view/avaliar_tcc.php"';
+                } else {
+                    echo '';
+                }
+                echo '>Avaliar TCC</a></li>';
+                echo '<li><a href = "../view/visualizar_tcc.php">Visualizar TCC</a></li>';
+                echo '<li><a>'.$professorTabela['nomeProfessor'].'</a></li>';
+                echo '<li><a href="../view/index.php">Sair</a></li>';
+                ?>
+                
+
             </ul>
         </nav>
+
+
+        <?php
+        echo 'cor' . $c;
+        echo 'ori' . $o;
+        echo 'ava' . $a;
+        ?>
 
         <div style="border: 1px solid black;" id="gerenciarTcc">
 
             <h2>Criar de TCC</h2>
-            <?php
-            echo 'cor' . $c;
-            echo 'ori' . $o;
-            echo 'ava' . $a;
-            ?>
 
             <form method="POST" action='../controller/cadastrarTcc.php'>
 
@@ -258,7 +276,8 @@
                     mysqli_close($con);
                     echo '</select><br><br>';
 
-                    echo '<input type="submit" value="Editar"><br><br>';
+                    echo '<input type="submit" name="btEditar" value="Editar"><br><br>';
+                    echo '<input type="submit" name="btExcluir" value="Excluir"><br><br>';
                     echo '</form>';
                 }
 
