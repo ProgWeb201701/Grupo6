@@ -55,6 +55,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/estilo.css">
     </head>
     <body>
 
@@ -93,7 +94,7 @@
         echo 'ava' . $a;
         ?>
 
-        <div style="border: 1px solid black;" id="gerenciarTcc">
+        <div id="divCriarTcc">
 
             <h2>Criar de TCC</h2>
 
@@ -101,10 +102,10 @@
 
 
                 Título:<br>
-                <input class="inputLogin" name="tituloTcc" type="text"><br><br>
+                <input class="inputIndex" name="tituloTcc" type="text"><br><br>
 
                 Orientando:<br>
-                <select name="orientandoTcc">
+                <select class="inputIndex" name="orientandoTcc">
                     <?php
                     $con = mysqli_connect("localhost", "root", "96091262375", "progweb");
                     $sql = "SELECT * FROM aluno;";
@@ -121,7 +122,7 @@
                 </select><br><br>             
 
                 Orientador:<br>
-                <select name="orientadorTcc">
+                <select class="inputIndex" name="orientadorTcc">
                     <?php
                     $con = mysqli_connect("localhost", "root", "96091262375", "progweb");
                     $sql = "SELECT * FROM professor;";
@@ -138,7 +139,7 @@
                 </select><br><br>  
 
                 Avaliador 1:<br>
-                <select name="avaliadorUm">
+                <select class="inputIndex" name="avaliadorUm">
                     <?php
                     $con = mysqli_connect("localhost", "root", "96091262375", "progweb");
                     $sql = "SELECT * FROM professor;";
@@ -155,7 +156,7 @@
                 </select><br><br>
 
                 Avaliador 2:<br>
-                <select name="avaliadorDois">
+                <select class="inputIndex" name="avaliadorDois">
                     <?php
                     require_once '../controller/lerObjeto.php';
                     $ler = new lerObjeto();
@@ -171,15 +172,15 @@
                     ?>
                 </select><br><br>
 
-                <input type="submit" value="Salvar">
+                <input class="inputIndex" type="submit" value="Salvar">
 
             </form>
 
         </div>
         <br>
 
-        <div style="border: 1px solid black;" id="mostrarTcc">
-            <h2>TCCs Cadastrados</h2>
+        <div id="divEditarTcc">
+            <h2>Editar/Excluir TCC</h2>
 
             <?php
             require_once '../controller/lerObjeto.php';
@@ -195,10 +196,10 @@
                     $avaliador1 = $ler->lerLinha($obj->idAvaliadorUm, 'professor', 'idProfessor');
                     $avaliador2 = $ler->lerLinha($obj->idAvaliadorDois, 'professor', 'idProfessor');
 
-                    echo '<input readonly name="idTcc" value="' . $obj->idTcc . '"><br>';
-                    echo '<input name="tituloTcc" value="' . $obj->tituloTcc . '"><br>';
+                    echo '<input type="hidden" name="idTcc" value="' . $obj->idTcc . '"><br>';
+                    echo '<input class="inputIndex" name="tituloTcc" value="' . $obj->tituloTcc . '"><br>';
 
-                    echo '<select name="orientandoTcc">';
+                    echo '<select class="inputIndex" name="orientandoTcc">';
                     $con = mysqli_connect("localhost", "root", "96091262375", "progweb");
                     $sql = "SELECT * FROM aluno ORDER BY nomeAluno;";
 
@@ -215,9 +216,9 @@
                         mysqli_free_result($result2);
                     }
                     mysqli_close($con);
-                    echo '</select><br><br>';
+                    echo '</select><br>';
 
-                    echo '<select name="orientadorTcc">';
+                    echo '<select class="inputIndex" name="orientadorTcc">';
                     $con2 = mysqli_connect("localhost", "root", "96091262375", "progweb");
                     $sql2 = "SELECT * FROM professor ORDER BY nomeProfessor;";
 
@@ -236,9 +237,9 @@
                         mysqli_free_result($result3);
                     }
                     mysqli_close($con);
-                    echo '</select><br><br>';
+                    echo '</select><br>';
 
-                    echo '<select name="Avaliador1Tcc">';
+                    echo '<select class="inputIndex" name="Avaliador1Tcc">';
                     $con3 = mysqli_connect("localhost", "root", "96091262375", "progweb");
                     $sql3 = "SELECT * FROM professor ORDER BY nomeProfessor;";
 
@@ -255,9 +256,9 @@
                         mysqli_free_result($result4);
                     }
                     mysqli_close($con);
-                    echo '</select><br><br>';
+                    echo '</select><br>';
 
-                    echo '<select name="Avaliador2Tcc">';
+                    echo '<select class="inputIndex" name="Avaliador2Tcc">';
                     $con4 = mysqli_connect("localhost", "root", "96091262375", "progweb");
                     $sql4 = "SELECT * FROM professor ORDER BY nomeProfessor;";
 
@@ -274,10 +275,12 @@
                         mysqli_free_result($result5);
                     }
                     mysqli_close($con);
-                    echo '</select><br><br>';
+                    echo '</select><br>';
 
-                    echo '<input type="submit" name="btEditar" value="Editar"><br><br>';
-                    echo '<input type="submit" name="btExcluir" value="Excluir"><br><br>';
+                    echo '<input style="background-color: green; "class="btFormulario" '
+                    . 'type="submit" name="btEditar" value="Editar"><br>';
+                    echo '<input style="background-color: red; "class="btFormulario" '
+                    . 'type="submit" name="btExcluir" value="Excluir"><br><br>';
                     echo '</form>';
                 }
 

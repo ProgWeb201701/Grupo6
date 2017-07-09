@@ -50,6 +50,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/estilo.css">
     </head>
     <body>
 
@@ -90,20 +91,20 @@
         <div id="divEditarPerfil">
             <h3>Edite seu perfil!</h3>
             <form method="post" action="../controller/editarProfessor.php">
-                <label>ID:</label><br>
-                <input readonly type="text" name="idProfessor" value="<?php echo $professorTabela['idProfessor'] ?>">
+                
+                <input readonly type="hidden" name="idProfessor" value="<?php echo $professorTabela['idProfessor'] ?>">
                 <br><br>
 
                 Nome:<br>
-                <input type="text" name="nomeProfessor" value="<?php echo $professorTabela['nomeProfessor'] ?>">
+                <input class="inputIndex" type="text" name="nomeProfessor" value="<?php echo $professorTabela['nomeProfessor'] ?>">
                 <br><br>
 
                 Email:<br>
-                <input type="text" name="emailProfessor" value="<?php echo $professorTabela['emailProfessor'] ?>">
+                <input class="inputIndex" type="text" name="emailProfessor" value="<?php echo $professorTabela['emailProfessor'] ?>">
                 <br><br>
 
                 Titulação:<br>
-                <select name="titulacaoProfessor">
+                <select class="inputIndex" name="titulacaoProfessor">
                     <?php
                     echo '<option value="' . $titulacao . '">' . $titulacao . '</option>';
                     if ($titulacao === 'Mestrado') {
@@ -117,7 +118,7 @@
                 <br>
 
                 Área de Interesse:<br>
-                <select name="areaProfessor">
+                <select class="inputIndex" name="areaProfessor">
                     <?php
                     $areas = array("Teste de Software", "Programacao Web", "Qualidade de Software");
                     $areaslength = count($areas);
@@ -134,11 +135,16 @@
                 <br><br>
 
                 Senha:<br>
-                <input type="password" name="senhaProfessor" value="<?php echo $professorTabela['senhaProfessor'] ?>">
+                <input class="inputIndex" type="password" name="senhaProfessor" 
+                       value="<?php echo $professorTabela['senhaProfessor'] ?>">
                 <br><br>
 
-                <button class="btEditar" name="btEditarProfessor" type="input">Editar</button>
-                <button class="btEditar" name="btExcluirProfessor" type="input">Excluir</button>
+                <button class="btFormulario" style="background-color: green;" 
+                        name="btEditarProfessor" type="input">Editar</button><br>
+                
+                        <button class="btFormulario" style="background-color: red;"
+                        name="btExcluirProfessor" type="input">Excluir</button>
+                <br>
             </form>
         </div>
 

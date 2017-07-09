@@ -17,7 +17,7 @@
                 . $professorLogin['idProfessor']);
         $professorTabela = mysqli_fetch_assoc($result);
 
-                date_default_timezone_set('America/Sao_Paulo');
+        date_default_timezone_set('America/Sao_Paulo');
         $dataAtual = date('d-m-Y');
         //Coordenador
         require_once '../controller/lerObjeto.php';
@@ -56,6 +56,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/estilo.css">
     </head>
     <body>
 
@@ -79,10 +80,10 @@
                 }
                 echo '>Avaliar TCC</a></li>';
                 echo '<li><a href = "../view/visualizar_tcc.php">Visualizar TCC</a></li>';
-                echo '<li><a>'.$professorTabela['nomeProfessor'].'</a></li>';
+                echo '<li><a>' . $professorTabela['nomeProfessor'] . '</a></li>';
                 echo '<li><a href="../view/index.php">Sair</a></li>';
                 ?>
-                
+
 
             </ul>
         </nav>
@@ -95,8 +96,8 @@
         ?>
 
 
-        <div style="border: 1px solid black;" id="mostrarTcc">
-            <h2>TCCs Cadastrados</h2>
+        <div id="divAvaliarTcc">
+            <h2>Avaliar TCC</h2>
 
             <?php
             require_once '../controller/lerObjeto.php';
@@ -104,31 +105,35 @@
             $result = $ler->lerTabela('tcc');
 
             if ($result) {
-                
+
                 while ($obj = mysqli_fetch_object($result)) {
-echo '<form method="POST" action="../controller/avaliarTcc.php">';
-                    $orientando = $ler->lerLinha($obj->idOrientando, 'aluno', 'idAluno');
-                    $orientador = $ler->lerLinha($obj->idOrientador, 'professor', 'idProfessor');
-                    $avaliador1 = $ler->lerLinha($obj->idAvaliadorUm, 'professor', 'idProfessor');
-                    $avaliador2 = $ler->lerLinha($obj->idAvaliadorDois, 'professor', 'idProfessor');
 
-                    echo '<input readonly name="idTcc" value="' . $obj->idTcc . '"><br>';
-                    echo '<input readonly value="' . $obj->tituloTcc . '"><br>';
-                    echo '<input readonly value="' . $orientando['nomeAluno'] . '"><br>';
-                    echo '<input readonly value="' . $orientador['nomeProfessor'] . '"><br>';
-                    echo '<input readonly value="' . $avaliador1['nomeProfessor'] . '"><br>';
-                    echo '<input readonly value="' . $avaliador2['nomeProfessor'] . '"><br>';
+                    if ($professorTabela['idProfessor'] == $obj->idAvaliadorUm || $professorTabela['idProfessor'] == $obj->idAvaliadorDois) {
 
-                    if (is_null($obj->notaTcc)) {
-                        echo '<input type="number" name="notaTcc" placeholder="Avalie aqui..."><br>';
-                    } else {
-                        echo '<input type="number" name="notaTcc" value="' . $obj->notaTcc . '"><br>';
+                        echo '<form method="POST" action="../controller/avaliarTcc.php">';
+                        $orientando = $ler->lerLinha($obj->idOrientando, 'aluno', 'idAluno');
+                        $orientador = $ler->lerLinha($obj->idOrientador, 'professor', 'idProfessor');
+                        $avaliador1 = $ler->lerLinha($obj->idAvaliadorUm, 'professor', 'idProfessor');
+                        $avaliador2 = $ler->lerLinha($obj->idAvaliadorDois, 'professor', 'idProfessor');
+
+                        echo '<input type="hidden" name="idTcc" value="' . $obj->idTcc . '"><br>';
+                        echo '<input class="inputIndex" readonly value="' . $obj->tituloTcc . '"><br>';
+                        echo '<input class="inputIndex" readonly value="' . $orientando['nomeAluno'] . '"><br>';
+                        echo '<input class="inputIndex" readonly value="' . $orientador['nomeProfessor'] . '"><br>';
+                        echo '<input class="inputIndex" readonly value="' . $avaliador1['nomeProfessor'] . '"><br>';
+                        echo '<input class="inputIndex" readonly value="' . $avaliador2['nomeProfessor'] . '"><br>';
+
+                        if ($obj->monografiaTcc == NULL) {
+                            echo '<br><label>Você não pode avaliar esse TCC pois a monografia ainda não foi enviada</label>';
+                        } else {
+                            echo '<input class="inputIndex" type="number" value="' . $obj->notaTcc . '"><br>';
+                            echo '<textarea rows="5" cols="50" name="comentarioTcc">' . $obj->comentarioTcc . '</textarea><br>';
+                            echo '<input class="inputIndex" type="submit" value="Avaliar"><br><br>';
+                        }
+                        echo '</form>';
                     }
-
-                    echo '<input type="submit" value="Avaliar"><br><br>';
-                    echo '</form>';
                 }
-                
+
 
                 mysqli_free_result($result);
             }

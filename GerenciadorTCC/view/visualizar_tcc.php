@@ -16,7 +16,7 @@
         $result = mysqli_query($con, "SELECT * FROM professor WHERE idProfessor = " . $professorLogin['idProfessor']);
         $professorTabela = mysqli_fetch_assoc($result);
 
-                date_default_timezone_set('America/Sao_Paulo');
+        date_default_timezone_set('America/Sao_Paulo');
         $dataAtual = date('d-m-Y');
         //Coordenador
         require_once '../controller/lerObjeto.php';
@@ -55,6 +55,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/estilo.css">
     </head>
     <body>
 
@@ -78,10 +79,10 @@
                 }
                 echo '>Avaliar TCC</a></li>';
                 echo '<li class="active"><a href = "../view/visualizar_tcc.php">Visualizar TCC</a></li>';
-                echo '<li><a>'.$professorTabela['nomeProfessor'].'</a></li>';
+                echo '<li><a>' . $professorTabela['nomeProfessor'] . '</a></li>';
                 echo '<li><a href="../view/index.php">Sair</a></li>';
                 ?>
-                
+
 
             </ul>
         </nav>
@@ -108,19 +109,63 @@
                     $orientador = $ler->lerLinha($obj->idOrientador, 'professor', 'idProfessor');
                     $avaliador1 = $ler->lerLinha($obj->idAvaliadorUm, 'professor', 'idProfessor');
                     $avaliador2 = $ler->lerLinha($obj->idAvaliadorDois, 'professor', 'idProfessor');
+                    echo '<form target="_blank" method="post" action="../controller/mostrarMonografia.php">';
+                    echo '<input name="idTcc" type="hidden" value="' . $obj->idTcc . '"><br>';
+                    echo '
+                    <table class="tg">
+                    <tr>
+                    <th class="tg-ddj9">Título</th>
+                    <th class="tg-i81m">' . $obj->tituloTcc . '</th>
+                    </tr>
+                    
+                    <tr>
+                    <td class="tg-ddj9">Orientando</td>
+                    <td class="tg-i81m">' . $orientando['nomeAluno'] . '</td>
+                    </tr>
+                    
+                    <tr>
+                    <td class="tg-ddj9">Orientador</td>
+                    <td class="tg-i81m">' . $orientador['nomeProfessor'] . '</td>
+                    </tr>
+                    
+                    <tr>
+                    <td class="tg-ddj9">Avaliador 1</td>
+                    <td class="tg-i81m">' . $avaliador1['nomeProfessor'] . '</td>
+                    </tr>
+  
+                    <tr>
+                    <td class="tg-ddj9">Avaliador 2</td>
+                    <td class="tg-i81m">' . $avaliador2['nomeProfessor'] . '</td>
+                    </tr>
+  
+                    <tr>
+                    <td class="tg-ddj9">Monografia</td>';
+                    if ($obj->monografiaTcc == NULL) {
+                        echo '<td class="tg-i81m">Nenhuma monografia enviada.</td></tr>';
+                        echo '<tr><td class="tg-ddj9">Nota</td>
+                              <td class="tg-i81m">Nenhuma nota enviada.</td>
+                            </tr>
+   
+                            <tr>
+                            <td class="tg-ddj9">Comentário</td>
+                            <td class="tg-i81m">Nenhum comentário enviado.</td>
+                            </tr>';
+                    } else {
+                        echo '<td class="tg-i81m"><input name="verTcc" type="submit" value="Acessar PDF"></td></tr><tr>';
+                        echo '   <tr><td class="tg-ddj9">Nota</td>
+                        <td class="tg-i81m">' . $obj->notaTcc . '</td>
+                        </tr>
+  
+                        <tr>
+                        <td class="tg-ddj9">Comentário</td>
+                        <td class="tg-i81m">' . $obj->comentarioTcc . '</td>
+                        </tr>';
+                    }
 
-                    echo '<div id="divEditarPerfil">';
-                    
-                    echo '<label>Título: '.$obj->tituloTcc.'</label><br>';                    
-                    echo '<label>Orientando: '.$orientando['nomeAluno'].'</label><br>';
-                    echo '<label>Orientador: '.$orientador['nomeProfessor'].'</label><br>';
-                    echo '<label>Avaliador 1: '.$avaliador1['nomeProfessor'].'</label><br>';
-                    echo '<label>Avaliador 2: '.$avaliador2['nomeProfessor'].'</label><br>';
-                    echo '<label>Monografia: </label><br>'; 
-                    echo '<label>Nota: '.$obj->notaTcc.'</label><br>'; 
-                    
-                    echo '</div>';
-                    
+
+                    echo '</table>';
+                    echo '</form>';
+
                     echo '<br>';
                 }
                 mysqli_free_result($result);
