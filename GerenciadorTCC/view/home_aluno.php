@@ -23,6 +23,14 @@ and open the template in the editor.
         $result = mysqli_query($con, "SELECT * FROM aluno WHERE idAluno = "
                 . $alunoLogin['idAluno']);
         $alunoTabela = mysqli_fetch_assoc($result);
+
+        if (isset($_GET['erro'])) {
+            $Message = "O arquivo não pode ser importado!";
+            echo $Message;
+        } else if (isset($_GET['sucesso'])) {
+            $Message = "O arquivo foi importado com sucesso!";
+            echo $Message;
+        }
         ?>
         <title>Aluno</title>
         <meta charset="UTF-8">
@@ -120,13 +128,12 @@ and open the template in the editor.
 
                 echo '<form method = "post" enctype = "multipart/form-data" action = "../controller/enviarMonografia.php">';
 
-                echo '<label for="file-upload" class="custom-file-upload">';
-                echo '<i class="fa fa-cloud-upload"></i> Procurar Monografia';
-                echo '</label>';
-                echo '<input id="file-upload" type="file"/>';
-                
+                echo '<div id="envio">';
+                echo '<input value="aaa" name="monografiaTcc" type="file">';
+                echo '</div>';
+
                 echo '<input name = "idTcc" type = "hidden" readonly value = "' . $meuTcc['idTcc'] . '">';
-                echo '<br>';
+                echo '<br>';                
                 echo '<input name = "upload" type = "submit" value = "Enviar">';
 
                 echo '</form>';
