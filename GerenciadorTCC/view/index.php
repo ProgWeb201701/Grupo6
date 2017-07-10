@@ -6,6 +6,86 @@ and open the template in the editor.
 -->
 <html>
     <head>
+        <script type="text/javascript" src="js/jquery.js"></script>
+
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/jquery.validate.js" language="JavaScript"></script>
+
+        <script>
+            
+            $(document).ready(function () {
+                $("#form-trabalhos").validate({
+                    // Define as regras
+                    rules: {
+                        nomeProfessor: {
+                            required: true
+                        },
+                        emailProfessor: {
+                            required: true,
+                            email: true
+                        },
+                        senhaProfessor: {
+                            required: true
+                        }
+                    },
+                    // Define as mensagens de erro para cada regra
+                    messages: {
+                        nomeProfessor: {
+                            required: "Digite o nome!"
+                        },
+                        senhaProfessor: {
+                            required: "Digite a senha!"
+                        },
+                        emailProfessor: {
+                            required: "Digite o email!",
+                            email: "Digite um email válido!"
+                        }
+                    }
+                });
+            });
+            
+            $(document).ready(function () {
+                $("#form-inscricoes").validate({
+                    // Define as regras
+                    rules: {
+                        nomeAluno: {
+                            required: true
+                        },
+                        senhaAluno: {
+                            required: true
+                        },
+                        matriculaAluno: {
+                            required: true,
+                            min:5
+                        },
+                        emailAluno: {
+                            required: true,
+                            email: true
+                        }
+                    },
+                    // Define as mensagens de erro para cada regra
+                    messages: {
+                        nomeAluno: {
+                            required: "Digite o nome!"
+                        },
+                        senhaAluno: {
+                            required: "Digite a senha!"
+                        },
+                        matriculaAluno: {
+                            required: "Digite a matrícula!",
+                            min: "A matrícula tem, no minimo, 5 digitos!"
+                        },
+                        emailAluno: {
+                            required: "Digite o email!",
+                            email: "Digite um email válido!"
+                        }
+                    }
+                });
+            });
+        </script>
+
         <title>Inicio</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,27 +121,33 @@ and open the template in the editor.
 
             <div id="divCadastrarA">
                 <h4>Aluno</h4>
-                <form method="POST" action="../controller/cadastrarAluno.php">
-                    <fieldset> 
-                        <input class="inputIndex" type="text" name="nomeAluno" placeholder="Nome"><br>
-                        <input class="inputIndex" type="email" name="emailAluno" placeholder="Email"><br>
-                        <input class="inputIndex" type="number" name="matriculaAluno" placeholder="Matrícula"><br>
-                        <input class="inputIndex" type="password" name="senhaAluno" placeholder="Senha"><br>
+                <form id="form-inscricoes" method="post" action="../controller/cadastrarAluno.php">
+                    <input class="inputIndex" type="text" placeholder="Nome" name="nomeAluno"><br>
+                        
+                         <input class="inputIndex" type="email" placeholder="Email" name="emailAluno"><br>
+                        
+                        <input class="inputIndex" type="number" placeholder="Matrícula" name="matriculaAluno"><br>
 
-                        <input class="inputIndex" type="submit" value="Cadastrar">     
-                    </fieldset>
+                        <input class="inputIndex" type="password" placeholder="Senha" name="senhaAluno"><br>
+
+                        <input class="inputIndex" type="submit" value="Cadastrar"/>
+                        <br><br>
+                    
                 </form>
-                
+
             </div>
 
 
 
             <div id="divCadastrarB">
                 <h4>Professor</h4>
-                <form method="POST" action="../controller/cadastrarProfessor.php">
-                    <fieldset>
-                        <input class="inputIndex" name="nomeProfessor" type="text" placeholder="Nome"><br>
-                        <input class="inputIndex" name="emailProfessor" type="email" placeholder="Email"><br>
+                
+                <form id="form-trabalhos" method="POST" action="../controller/cadastrarProfessor.php" >
+                    
+                        
+                        <input class="inputIndex" type="text" placeholder="Nome" name="nomeProfessor"><br>
+                        <input class="inputIndex" type="email" placeholder="Email" name="emailProfessor"><br>
+                        
                         <select class="inputIndex" name="titulacaoProfessor">
                             <option value="Mestrado">Mestrado</option>
                             <option value="Doutorado">Doutorado</option>
@@ -76,11 +162,13 @@ and open the template in the editor.
                             }
                             ?>
                         </select><br>
-                        <input class="inputIndex" name="senhaProfessor" type="password" placeholder="Senha"><br>
-                        <input class="inputIndex" type="submit" value="Cadastrar">    
-                    </fieldset>
+
+                        <input class="inputIndex" type="senha" placeholder="Senha" name="senhaProfessor"><br>
+
+                        <input class="inputIndex" type="submit" value="Cadastrar"/>
+                    
                 </form>
-                
+
             </div>
 
         </div>
