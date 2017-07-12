@@ -5,7 +5,7 @@ $id = $_POST['idTcc'];
 if (isset($_POST['verTcc'])) {
     $query = "SELECT * from tcc WHERE idTcc=$id;";
 
-    $con = mysqli_connect("localhost", "root", "96091262375", "progweb");
+    $con = mysqli_connect("localhost", "root", "", "progweb");
     $result = mysqli_query($con, $query);
 
     if ($result) {

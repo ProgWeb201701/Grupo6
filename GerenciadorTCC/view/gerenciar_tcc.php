@@ -12,7 +12,7 @@
         }
 
         $professorLogin = $_SESSION['professorTabela'];
-        $con = mysqli_connect("localhost", "root", "96091262375", "progweb");
+        $con = mysqli_connect("localhost", "root", "", "progweb");
         $result = mysqli_query($con, "SELECT * FROM professor WHERE idProfessor = " . $professorLogin['idProfessor']);
         $professorTabela = mysqli_fetch_assoc($result);
 
@@ -88,12 +88,6 @@
         </nav>
 
 
-        <?php
-        echo 'cor' . $c;
-        echo 'ori' . $o;
-        echo 'ava' . $a;
-        ?>
-
         <div id="divCriarTcc">
 
             <h2>Criar de TCC</h2>
@@ -107,7 +101,7 @@
                 Orientando:<br>
                 <select class="inputIndex" name="orientandoTcc">
                     <?php
-                    $con = mysqli_connect("localhost", "root", "96091262375", "progweb");
+                    $con = mysqli_connect("localhost", "root", "", "progweb");
                     $sql = "SELECT * FROM aluno;";
 
                     if ($result = mysqli_query($con, $sql)) {
@@ -124,7 +118,7 @@
                 Orientador:<br>
                 <select class="inputIndex" name="orientadorTcc">
                     <?php
-                    $con = mysqli_connect("localhost", "root", "96091262375", "progweb");
+                    $con = mysqli_connect("localhost", "root", "", "progweb");
                     $sql = "SELECT * FROM professor;";
 
                     if ($result = mysqli_query($con, $sql)) {
@@ -141,7 +135,7 @@
                 Avaliador 1:<br>
                 <select class="inputIndex" name="avaliadorUm">
                     <?php
-                    $con = mysqli_connect("localhost", "root", "96091262375", "progweb");
+                    $con = mysqli_connect("localhost", "root", "", "progweb");
                     $sql = "SELECT * FROM professor;";
 
                     if ($result = mysqli_query($con, $sql)) {
@@ -200,7 +194,7 @@
                     echo '<input class="inputIndex" name="tituloTcc" value="' . $obj->tituloTcc . '"><br>';
 
                     echo '<select class="inputIndex" name="orientandoTcc">';
-                    $con = mysqli_connect("localhost", "root", "96091262375", "progweb");
+                    $con = mysqli_connect("localhost", "root", "", "progweb");
                     $sql = "SELECT * FROM aluno ORDER BY nomeAluno;";
 
 
@@ -219,7 +213,7 @@
                     echo '</select><br>';
 
                     echo '<select class="inputIndex" name="orientadorTcc">';
-                    $con2 = mysqli_connect("localhost", "root", "96091262375", "progweb");
+                    $con2 = mysqli_connect("localhost", "root", "", "progweb");
                     $sql2 = "SELECT * FROM professor ORDER BY nomeProfessor;";
 
 
@@ -240,7 +234,7 @@
                     echo '</select><br>';
 
                     echo '<select class="inputIndex" name="Avaliador1Tcc">';
-                    $con3 = mysqli_connect("localhost", "root", "96091262375", "progweb");
+                    $con3 = mysqli_connect("localhost", "root", "", "progweb");
                     $sql3 = "SELECT * FROM professor ORDER BY nomeProfessor;";
 
                     if ($result4 = mysqli_query($con3, $sql3)) {
@@ -259,7 +253,7 @@
                     echo '</select><br>';
 
                     echo '<select class="inputIndex" name="Avaliador2Tcc">';
-                    $con4 = mysqli_connect("localhost", "root", "96091262375", "progweb");
+                    $con4 = mysqli_connect("localhost", "root", "", "progweb");
                     $sql4 = "SELECT * FROM professor ORDER BY nomeProfessor;";
 
 

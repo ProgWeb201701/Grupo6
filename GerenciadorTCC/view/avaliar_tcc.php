@@ -12,7 +12,7 @@
         }
 
         $professorLogin = $_SESSION['professorTabela'];
-        $con = mysqli_connect("localhost", "root", "96091262375", "progweb");
+        $con = mysqli_connect("localhost", "root", "", "progweb");
         $result = mysqli_query($con, "SELECT * FROM professor WHERE idProfessor = "
                 . $professorLogin['idProfessor']);
         $professorTabela = mysqli_fetch_assoc($result);
@@ -89,13 +89,6 @@
         </nav>
 
 
-        <?php
-        echo 'cor' . $c;
-        echo 'ori' . $o;
-        echo 'ava' . $a;
-        ?>
-
-
         <div id="divAvaliarTcc">
             <h2>Avaliar TCC</h2>
 
@@ -126,7 +119,7 @@
                         if ($obj->monografiaTcc == NULL) {
                             echo '<br><label>Você não pode avaliar esse TCC pois a monografia ainda não foi enviada</label>';
                         } else {
-                            echo '<input class="inputIndex" type="number" value="' . $obj->notaTcc . '"><br>';
+                            echo '<input class="inputIndex" name="notaTcc" type="number" value="' . $obj->notaTcc . '"><br>';
                             echo '<textarea rows="5" cols="50" name="comentarioTcc">' . $obj->comentarioTcc . '</textarea><br>';
                             echo '<input class="inputIndex" type="submit" value="Avaliar"><br><br>';
                         }

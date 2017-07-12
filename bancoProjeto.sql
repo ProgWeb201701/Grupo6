@@ -1,13 +1,3 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- * Author:  Bruno
- * Created: 14/06/2017
- */
-
 CREATE TABLE  professor (
   idProfessor SERIAL,
   nomeProfessor varchar(50) NOT NULL,
@@ -34,7 +24,7 @@ CREATE TABLE  tcc (
     comentarioTcc varchar(100),
     monografiaTcc longblob,
     PRIMARY KEY (idTcc),
-    idOrientado integer references aluno (idAluno),
+    idOrientando integer references aluno (idAluno),
     idOrientador integer references professor (idProfessor),
     idAvaliadorUm integer references professor (idProfessor),
     idAvaliadorDois integer references professor (idProfessor)

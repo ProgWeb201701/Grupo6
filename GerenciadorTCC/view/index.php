@@ -23,8 +23,7 @@ and open the template in the editor.
                             required: true
                         },
                         emailProfessor: {
-                            required: true,
-                            email: true
+                            required: true
                         },
                         senhaProfessor: {
                             required: true
@@ -39,8 +38,7 @@ and open the template in the editor.
                             required: "Digite a senha!"
                         },
                         emailProfessor: {
-                            required: "Digite o email!",
-                            email: "Digite um email válido!"
+                            required: "Digite o email!"
                         }
                     }
                 });
@@ -146,7 +144,7 @@ and open the template in the editor.
                     
                         
                         <input class="inputIndex" type="text" placeholder="Nome" name="nomeProfessor"><br>
-                        <input class="inputIndex" type="email" placeholder="Email" name="emailProfessor"><br>
+                        <input class="inputIndex" type="text" placeholder="Email" name="emailProfessor"><br>
                         
                         <select class="inputIndex" name="titulacaoProfessor">
                             <option value="Mestrado">Mestrado</option>
@@ -163,7 +161,7 @@ and open the template in the editor.
                             ?>
                         </select><br>
 
-                        <input class="inputIndex" type="senha" placeholder="Senha" name="senhaProfessor"><br>
+                        <input class="inputIndex" type="password" placeholder="Senha" name="senhaProfessor"><br>
 
                         <input class="inputIndex" type="submit" value="Cadastrar"/>
                     

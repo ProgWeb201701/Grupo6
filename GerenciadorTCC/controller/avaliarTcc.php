@@ -14,6 +14,6 @@ $comentario = $_POST['comentarioTcc'];
 
 $query = "UPDATE tcc SET notaTcc = $nota, comentarioTcc = '$comentario' WHERE idTcc = $id;";
 
-$con = mysqli_connect("localhost", "root", "96091262375", "progweb");
+$con = mysqli_connect("localhost", "root", "", "progweb");
 $result = mysqli_query($con, $query);
 header("Location: ../view/avaliar_tcc.php");

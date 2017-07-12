@@ -11,7 +11,7 @@ $email = $_POST['emailAluno'];
 $query = "INSERT INTO aluno (nomeAluno, senhaAluno, matriculaAluno, emailAluno) "
         . "VALUES ('$nome','$senha','$matricula','$email');";
 
-$con = mysqli_connect("localhost", "root", "96091262375", "progweb");
+$con = mysqli_connect("localhost", "root", "", "progweb");
 $result = mysqli_query($con, $query);
 
 

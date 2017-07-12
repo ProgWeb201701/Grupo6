@@ -15,12 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 . "idOrientador = $orientador, idAvaliadorUm = $avaliador1,"
                 . " idAvaliadorDois = $avaliador2 WHERE idTcc = $id;";
 
-        $con = mysqli_connect("localhost", "root", "96091262375", "progweb");
+        $con = mysqli_connect("localhost", "root", "", "progweb");
         mysqli_query($con, $query);
     } else if (isset ($_POST['btExcluir'])) {
         $query = "DELETE from tcc WHERE idTcc=$id";
 
-        $con = mysqli_connect("localhost", "root", "96091262375", "progweb");
+        $con = mysqli_connect("localhost", "root", "", "progweb");
         mysqli_query($con, $query);
     }
 }

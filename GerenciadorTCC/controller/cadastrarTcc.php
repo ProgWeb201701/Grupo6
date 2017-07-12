@@ -16,7 +16,7 @@ $query = "INSERT INTO tcc (tituloTcc, idOrientando, idOrientador, idAvaliadorUm,
         . " idAvaliadorDois) VALUES ('$titulo',$orientando,$orientador, "
         . "$avaliador1, $avaliador2);";
 
-$con = mysqli_connect("localhost", "root", "96091262375", "progweb");
+$con = mysqli_connect("localhost", "root", "", "progweb");
 $result = mysqli_query($con, $query);
 
 header("Location: ../view/home_professor.php");

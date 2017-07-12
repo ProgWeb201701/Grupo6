@@ -12,7 +12,7 @@ $usuario = $_POST['usuarioLogin'];
 $senha = $_POST['senhaLogin'];
 $opcao = $_POST['usuario'];
 
-$con = mysqli_connect("localhost", "root", "96091262375", "progweb");
+$con = mysqli_connect("localhost", "root", "", "progweb");
 
 $resultProfessor = mysqli_query($con, "SELECT * FROM professor WHERE "
         . "emailProfessor = '$usuario' AND senhaProfessor = '$senha';");

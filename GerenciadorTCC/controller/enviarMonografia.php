@@ -16,7 +16,7 @@ if (isset($_POST['upload'])) {
 function salvarArquivo($arquivo, $nome, $id) {
     $query = "update tcc set monografiaTcc = '$arquivo' where idTcc =$id;";
 
-    $con = mysqli_connect("localhost", "root", "96091262375", "progweb");
+    $con = mysqli_connect("localhost", "root", "", "progweb");
     $result = mysqli_query($con, $query);
 
     if ($result) {
@@ -29,7 +29,7 @@ function salvarArquivo($arquivo, $nome, $id) {
 if (isset($_POST['mostrar'])) {
     $query = "SELECT * from arquivo;";
 
-    $con = mysqli_connect("localhost", "root", "96091262375", "progweb");
+    $con = mysqli_connect("localhost", "root", "", "progweb");
     $result = mysqli_query($con, $query);
 
     if ($result) {

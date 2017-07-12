@@ -5,7 +5,7 @@
         session_start();
 
         $professorLogin = $_SESSION['professorTabela'];
-        $con = mysqli_connect("localhost", "root", "96091262375", "progweb");
+        $con = mysqli_connect("localhost", "root", "", "progweb");
         $result = mysqli_query($con, "SELECT * FROM professor WHERE idProfessor = " . $professorLogin['idProfessor']);
         $professorTabela = mysqli_fetch_assoc($result);
         $titulacao = $professorTabela['titulacaoProfessor'];
@@ -82,12 +82,6 @@
             </ul>
         </nav>
 
-
-        <?php
-        echo 'cor' . $c;
-        echo 'ori' . $o;
-        echo 'ava' . $a;
-        ?>
         <div id="divEditarPerfil">
             <h3>Edite seu perfil!</h3>
             <form method="post" action="../controller/editarProfessor.php">

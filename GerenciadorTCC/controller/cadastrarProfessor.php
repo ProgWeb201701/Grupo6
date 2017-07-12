@@ -12,7 +12,7 @@ $query = "INSERT INTO professor (nomeProfessor, senhaProfessor, "
         . "titulacaoProfessor, emailProfessor, areaInteresseProfessor) "
         . "VALUES ('$nome','$senha','$titulacao','$email', '$area');";
 
-$con = mysqli_connect("localhost", "root", "96091262375", "progweb");
+$con = mysqli_connect("localhost", "root", "", "progweb");
 $result = mysqli_query($con, $query);
 
 header("Location: ../view/index.php");

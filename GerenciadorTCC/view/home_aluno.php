@@ -19,7 +19,7 @@ and open the template in the editor.
         $senha = $_SESSION['senha'];
         $alunoLogin = $_SESSION['alunoTabela'];
 
-        $con = mysqli_connect("localhost", "root", "96091262375", "progweb");
+        $con = mysqli_connect("localhost", "root", "", "progweb");
         $result = mysqli_query($con, "SELECT * FROM aluno WHERE idAluno = "
                 . $alunoLogin['idAluno']);
         $alunoTabela = mysqli_fetch_assoc($result);

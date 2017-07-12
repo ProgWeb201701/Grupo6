@@ -12,7 +12,7 @@
         }
 
         $professorLogin = $_SESSION['professorTabela'];
-        $con = mysqli_connect("localhost", "root", "96091262375", "progweb");
+        $con = mysqli_connect("localhost", "root", "", "progweb");
         $result = mysqli_query($con, "SELECT * FROM professor WHERE idProfessor = " . $professorLogin['idProfessor']);
         $professorTabela = mysqli_fetch_assoc($result);
 
@@ -86,14 +86,6 @@
 
             </ul>
         </nav>
-
-
-        <?php
-        echo 'cor' . $c;
-        echo 'ori' . $o;
-        echo 'ava' . $a;
-        ?>
-
 
         <div id="mostrarTcc">
             <h2>TCCs Cadastrados</h2>
